@@ -129,7 +129,7 @@ func writeToJson(subs []tableData) {
 // extracts available entries
 var sID []string
 
-func extractData2(url []string) ([]string) {
+func extractData2(url []string) []string {
 	c := colly.NewCollector(colly.AllowedDomains("www.opensubtitles.org"))
 	// #bt-dwl-bt
 	// if only 1 entry available
