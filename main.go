@@ -174,33 +174,6 @@ func extractData2(url []string) ([]string) {
 	return sID
 }
 
-func downloadFile(id string) error {
-	// https://dl.opensubtitles.org/en/download/sub/8544733
-	url := "https://www.satking.de/media/image/95/44/4c/26_SatKing_Blog_DSL-Kabel-5G_600x600.png"
-	// url := fmt.Sprintf("%s/en/download/sub/%s", baseURL, id)
-	fmt.Println(url)
-	filepath2 := "/home/conrad/Downloads/temp/subs"
-
-	// Get the data
-	resp, err := http.Get(url)
-	if err != nil {
-		return err
-	}
-	defer resp.Body.Close()
-
-	// Create the file
-	out, err := os.Create(filepath2)
-	if err != nil {
-		return err
-	}
-	defer out.Close()
-
-	// Write the body to file
-	_, err = io.Copy(out, resp.Body)
-	return err
-
-}
-
 var (
 	fileName    string
 	fullURLFile string
