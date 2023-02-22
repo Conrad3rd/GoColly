@@ -33,7 +33,7 @@ var subs []tableData
 
 func main() {
 	// extractData()
-	// downloadFile2(extractData2(extractData()))
+	// downloadFile(extractData2(extractData()))
 	fmt.Println("<<<", extractData2(extractData()))
 	// extractData2(extractData())
 }
@@ -139,9 +139,13 @@ func extractData2(url []string) []string {
 		path := h.Attr("href")
 		// sID = strings.Split(path, "/")[4]
 		sID = append(sID, strings.Split(path, "/")[4])
-		fmt.Println(">>>", sID)
-		// return sID
-		// fmt.Println("only 1", path)
+		// fmt.Println(">>>", sID)
+		// fmt.Println("only 1", sID)
+		for _, v := range sID {
+			downloadFile(v)
+		}
+		// downloadFile(sID[0])
+		// return
 	})
 
 	// #search_results > tbody
@@ -156,12 +160,15 @@ func extractData2(url []string) []string {
 			if temp != "" {
 				// sID = strings.Split(temp, "/")[3]
 				sID = append(sID, strings.Split(temp, "/")[3])
-				fmt.Println("more then 1", sID)
+				// fmt.Println("more then 1", sID)
+				// return sID
+				for _, v := range sID {
+					downloadFile(v)
+				}
 
 			}
 		})
 	})
-
 	// startUrl := fmt.Sprintf("%s/de/ssearch/sublanguageid-%s/idmovie-%s", baseURL, lang, idMovie)
 	// c.Visit("https://www.opensubtitles.org/de/search/sublanguageid-ger/imdbid-697784")
 	// c.Visit("https://www.opensubtitles.org/de/search/sublanguageid-ger/imdbid-98286")
@@ -170,6 +177,7 @@ func extractData2(url []string) []string {
 
 		// fmt.Println(sID)
 		// return
+		// fmt.Println("##########", sID)
 	}
 	return sID
 }
@@ -179,10 +187,10 @@ var (
 	fullURLFile string
 )
 
-func downloadFile2(id string) {
+func downloadFile(id string) {
 	// fullURLFile = "http://dl.opensubtitles.org/en/download/sub/7893558"
 	fullURLFile = fmt.Sprintf("%s/en/download/sub/%s", baseURL, id)
-
+	fmt.Println(fullURLFile)
 	// Build fileName from fullPath
 	fileURL, err := url.Parse(fullURLFile)
 	if err != nil {
