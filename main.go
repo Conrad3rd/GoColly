@@ -147,8 +147,8 @@ func extractData2(url []string) []string {
 	// #search_results > tbody
 	// if more than 1 entry available
 	c.OnHTML("#search_results > tbody", func(h *colly.HTMLElement) {
-		sID = nil
 		h.ForEach("tr", func(_ int, el *colly.HTMLElement) {
+			sID = nil
 			// #main8544733 > strong > a
 			// td:nth-child(1) > span
 			temp := el.ChildAttr("a", "href")
